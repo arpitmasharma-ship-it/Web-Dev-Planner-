@@ -1,0 +1,2404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MERN Developer Planner</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --green: #16834f;
+    --dark-green: #0d633b;
+    --light-green: #e9f7ef;
+
+    --bg: #f4f7f5;
+    --white: #ffffff;
+
+    --text: #17251e;
+    --muted: #6b7971;
+
+    --border: #dfe8e2;
+
+    --red: #dc4c4c;
+
+    --shadow: 0 10px 30px rgba(23, 37, 30, 0.07);
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* ================= HEADER ================= */
+
+header {
+    background: white;
+    border-bottom: 1px solid var(--border);
+
+    padding: 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.header-content {
+    max-width: 800px;
+}
+
+.small-title {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 8px;
+}
+
+header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+header p {
+    color: var(--muted);
+}
+
+/* ================= BUTTON ================= */
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+.reset-btn {
+    background: #fff0f0;
+    color: #b93636;
+
+    border: 1px solid #ffd0d0;
+
+    padding: 11px 16px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+}
+
+/* ================= CONTAINER ================= */
+
+.container {
+    width: min(1150px, calc(100% - 30px));
+
+    margin: 30px auto 60px;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #eef9f2
+    );
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    padding: 28px;
+
+    box-shadow: var(--shadow);
+
+    margin-bottom: 25px;
+}
+
+.hero-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+.project-badge {
+    display: inline-block;
+
+    background: var(--light-green);
+
+    color: var(--dark-green);
+
+    padding: 6px 12px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.hero h2 {
+    margin-top: 12px;
+
+    font-size: 25px;
+}
+
+.hero-description {
+    color: var(--muted);
+
+    margin-top: 6px;
+}
+
+.big-progress {
+    text-align: center;
+
+    min-width: 140px;
+}
+
+.big-progress-number {
+    font-size: 38px;
+
+    font-weight: 900;
+
+    color: var(--green);
+}
+
+.big-progress-label {
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-background {
+    width: 100%;
+
+    height: 12px;
+
+    background: #dfeae3;
+
+    border-radius: 20px;
+
+    margin-top: 25px;
+
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+
+    width: 0%;
+
+    background: linear-gradient(
+        90deg,
+        var(--dark-green),
+        #27aa68
+    );
+
+    border-radius: 20px;
+
+    transition: 0.3s;
+}
+
+/* ================= STATS ================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.stat {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    padding: 14px;
+
+    border-radius: 12px;
+}
+
+.stat-number {
+    font-size: 21px;
+
+    font-weight: bold;
+}
+
+.stat-label {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-top: 3px;
+}
+
+/* ================= CONTROLS ================= */
+
+.controls {
+    display: grid;
+
+    grid-template-columns: 1fr 190px 150px;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+input,
+select {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    color: var(--text);
+}
+
+input:focus,
+select:focus {
+    border-color: var(--green);
+
+    box-shadow:
+        0 0 0 3px rgba(22, 131, 79, 0.1);
+}
+
+.expand-btn {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    font-weight: bold;
+}
+
+/* ================= PHASE ================= */
+
+.phase {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    margin-bottom: 13px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 15px rgba(23, 37, 30, 0.035);
+}
+
+.phase-header {
+    padding: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    cursor: pointer;
+}
+
+.phase-number {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--light-green);
+
+    color: var(--dark-green);
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    flex-shrink: 0;
+}
+
+.phase-info {
+    flex: 1;
+}
+
+.phase-title {
+    font-weight: bold;
+
+    font-size: 16px;
+}
+
+.phase-goal {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-top: 3px;
+}
+
+/* ================= PHASE PROGRESS ================= */
+
+.phase-progress {
+    width: 150px;
+}
+
+.phase-progress-text {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 12px;
+
+    color: var(--muted);
+
+    margin-bottom: 5px;
+}
+
+.mini-background {
+    height: 6px;
+
+    background: #e5ece7;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.mini-progress {
+    height: 100%;
+
+    background: var(--green);
+
+    width: 0%;
+
+    border-radius: 20px;
+}
+
+.arrow {
+    font-size: 20px;
+
+    color: var(--muted);
+
+    transition: 0.2s;
+}
+
+.phase.open .arrow {
+    transform: rotate(180deg);
+}
+
+/* ================= PHASE BODY ================= */
+
+.phase-body {
+    display: none;
+
+    border-top: 1px solid var(--border);
+
+    padding: 15px 20px 20px;
+}
+
+.phase.open .phase-body {
+    display: block;
+}
+
+.section-title {
+    color: var(--green);
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    margin: 10px 0 8px;
+}
+
+/* ================= TOPICS ================= */
+
+.topic-list {
+    display: grid;
+
+    gap: 7px;
+}
+
+.topic {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 10px 12px;
+
+    background: #fafcfb;
+
+    border: 1px solid #edf2ee;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+}
+
+.topic:hover {
+    background: #f5fbf7;
+
+    border-color: #cfe1d5;
+}
+
+.topic-checkbox {
+    appearance: none;
+
+    width: 19px;
+    height: 19px;
+
+    border: 2px solid #b9c9bf;
+
+    border-radius: 6px;
+
+    flex-shrink: 0;
+
+    position: relative;
+
+    cursor: pointer;
+}
+
+.topic-checkbox:checked {
+    background: var(--green);
+
+    border-color: var(--green);
+}
+
+.topic-checkbox:checked::after {
+    content: "✓";
+
+    position: absolute;
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 13px;
+
+    left: 3px;
+
+    top: -2px;
+}
+
+.topic-name {
+    flex: 1;
+
+    font-size: 14px;
+}
+
+.topic.completed .topic-name {
+    text-decoration: line-through;
+
+    color: #7a857f;
+}
+
+.done-badge {
+    background: var(--light-green);
+
+    color: var(--dark-green);
+
+    font-size: 10px;
+
+    padding: 3px 7px;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    text-align: center;
+
+    color: var(--muted);
+
+    padding: 20px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width: 750px) {
+
+    header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 22px;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    .hero-top {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .big-progress {
+        text-align: left;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .controls {
+        grid-template-columns: 1fr;
+    }
+
+    .phase-progress {
+        display: none;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="header-content">
+
+        <div class="small-title">
+            MERN → ADVANCED FULL-STACK DEVELOPER BY ARPIT'S Planner 
+        </div>
+
+        <h1>
+            🚀 Learning Planner For  Arpit Sharma Roadmap To Web Development .
+        </h1>
+
+        <p>
+            Track your journey from JavaScript to System Design.
+        </p>
+
+    </div>
+
+
+    <button
+        class="reset-btn"
+        onclick="resetProgress()"
+    >
+        Reset Progress
+    </button>
+
+</header>
+
+
+
+<div class="container">
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-top">
+
+        <div>
+
+            <span class="project-badge">
+                🎯 Final Project: TeamTask
+            </span>
+
+            <h2>
+                Your Full-Stack Roadmap
+            </h2>
+
+            <p class="hero-description">
+                Tick a topic when you complete it.
+                Your progress is automatically saved.
+            </p>
+
+        </div>
+
+
+        <div class="big-progress">
+
+            <div
+                class="big-progress-number"
+                id="overallPercent"
+            >
+                0%
+            </div>
+
+            <div class="big-progress-label">
+                Overall Progress
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="progress-background">
+
+        <div
+            class="progress"
+            id="overallProgress"
+        ></div>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="completedCount"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                Completed
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="remainingCount"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                Remaining
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="totalCount"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                Total Topics
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+            >
+                22
+            </div>
+
+            <div class="stat-label">
+                Phases
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CONTROLS ================= -->
+
+<div class="controls">
+
+    <input
+        type="search"
+        id="search"
+        placeholder="🔎 Search topic..."
+    >
+
+
+    <select id="filter">
+
+        <option value="all">
+            All Topics
+        </option>
+
+        <option value="completed">
+            ✅ Completed
+        </option>
+
+        <option value="remaining">
+            ⏳ Remaining
+        </option>
+
+    </select>
+
+
+    <button
+        class="expand-btn"
+        onclick="toggleAll()"
+        id="toggleAllBtn"
+    >
+        Collapse All
+    </button>
+
+</div>
+
+
+
+<!-- ================= PLANNER ================= -->
+
+<div id="planner"></div>
+
+
+</div>
+
+
+
+<footer>
+
+    Keep learning. Build TeamTask. 🚀
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================================================
+   ROADMAP DATA
+========================================================= */
+
+const phases = [
+
+{
+    number: 0,
+
+    title: "JavaScript Foundation",
+
+    goal: "Goal: JS mein comfortable hona",
+
+    topics: [
+
+        "Variables: let, const",
+
+        "Data types",
+
+        "Operators",
+
+        "if / else",
+
+        "Loops",
+
+        "Functions",
+
+        "Arrays",
+
+        "Objects",
+
+        "Basic DOM understanding"
+
+    ]
+},
+
+
+{
+    number: 1,
+
+    title: "Modern JavaScript ⭐",
+
+    goal: "Write modern JavaScript comfortably",
+
+    topics: [
+
+        "map()",
+
+        "filter()",
+
+        "reduce()",
+
+        "Destructuring",
+
+        "Spread operator",
+
+        "Rest operator",
+
+        "Template literals",
+
+        "Optional chaining ?.",
+
+        "Nullish coalescing ??",
+
+        "Ternary operator",
+
+        "Callbacks",
+
+        "Higher-order functions",
+
+        "this — basic",
+
+        "Closures — basic",
+
+        "Promises",
+
+        "async / await ⭐",
+
+        "try / catch",
+
+        "fetch()",
+
+        "JSON",
+
+        "ES Modules",
+
+        "Sync vs Async",
+
+        "Event loop — basic",
+
+        "Practice: JS problems + API fetching"
+
+    ]
+},
+
+
+{
+    number: 2,
+
+    title: "React ⭐⭐⭐",
+
+    goal: "Build TeamTask Frontend",
+
+    topics: [
+
+        "React setup",
+
+        "Components",
+
+        "JSX",
+
+        "Props",
+
+        "State",
+
+        "Events",
+
+        "Conditional rendering",
+
+        "Lists",
+
+        "Keys",
+
+        "Hooks",
+
+        "useState",
+
+        "useEffect",
+
+        "useRef",
+
+        "useContext",
+
+        "Custom Hooks",
+
+        "Forms",
+
+        "Form validation",
+
+        "API calls",
+
+        "Loading state",
+
+        "Error state",
+
+        "Empty state",
+
+        "Reusable components",
+
+        "Component structure",
+
+        "Folder structure",
+
+        "Project: Login",
+
+        "Project: Register",
+
+        "Project: Dashboard",
+
+        "Project: Projects",
+
+        "Project: Tasks",
+
+        "Project: Task Details",
+
+        "Project: Profile"
+
+    ]
+},
+
+
+{
+    number: 3,
+
+    title: "React Router",
+
+    goal: "Build real application routing",
+
+    topics: [
+
+        "BrowserRouter",
+
+        "Routes",
+
+        "Route",
+
+        "Link",
+
+        "NavLink",
+
+        "useNavigate",
+
+        "useParams",
+
+        "Query parameters",
+
+        "Nested routes",
+
+        "Protected routes",
+
+        "404 page",
+
+        "Project: /login",
+
+        "Project: /register",
+
+        "Project: /dashboard",
+
+        "Project: /projects",
+
+        "Project: /projects/:id",
+
+        "Project: /tasks",
+
+        "Project: /tasks/:id",
+
+        "Project: /profile"
+
+    ]
+},
+
+
+{
+    number: 4,
+
+    title: "Tailwind CSS + UI",
+
+    goal: "Make TeamTask look like a real SaaS application",
+
+    topics: [
+
+        "Responsive design",
+
+        "Flexbox",
+
+        "Grid",
+
+        "Forms",
+
+        "Cards",
+
+        "Modals",
+
+        "Tables",
+
+        "Navbar",
+
+        "Sidebar",
+
+        "Dropdown",
+
+        "Loading skeleton",
+
+        "Dark mode",
+
+        "Reusable UI components"
+
+    ]
+},
+
+
+{
+    number: 5,
+
+    title: "Redux Toolkit ⭐⭐⭐",
+
+    goal: "Manage global application state",
+
+    topics: [
+
+        "Why Redux",
+
+        "Store",
+
+        "Slice",
+
+        "State",
+
+        "Actions",
+
+        "Reducers",
+
+        "Selectors",
+
+        "createSlice",
+
+        "createAsyncThunk",
+
+        "API state",
+
+        "Loading / error state",
+
+        "Project state",
+
+        "auth state",
+
+        "user state",
+
+        "projects state",
+
+        "tasks state",
+
+        "UI state",
+
+        "notifications state"
+
+    ]
+},
+
+
+{
+    number: 6,
+
+    title: "Node.js",
+
+    goal: "Understand practical Node.js",
+
+    topics: [
+
+        "What Node.js is",
+
+        "npm",
+
+        "package.json",
+
+        "Modules",
+
+        "Environment variables",
+
+        "File structure",
+
+        "HTTP basics",
+
+        "Async Node.js",
+
+        "Error handling"
+
+    ]
+},
+
+
+{
+    number: 7,
+
+    title: "Express.js ⭐⭐⭐",
+
+    goal: "Build REST APIs",
+
+    topics: [
+
+        "Express setup",
+
+        "Routes",
+
+        "Request",
+
+        "Response",
+
+        "Middleware",
+
+        "Controllers",
+
+        "Error handling",
+
+        "Status codes",
+
+        "REST API",
+
+        "Validation",
+
+        "API structure",
+
+        "GET /api/tasks",
+
+        "POST /api/tasks",
+
+        "GET /api/tasks/:id",
+
+        "PUT /api/tasks/:id",
+
+        "DELETE /api/tasks/:id"
+
+    ]
+},
+
+
+{
+    number: 8,
+
+    title: "MongoDB + Mongoose ⭐⭐⭐",
+
+    goal: "Store TeamTask data",
+
+    topics: [
+
+        "Database basics",
+
+        "Collections",
+
+        "Documents",
+
+        "CRUD",
+
+        "MongoDB queries",
+
+        "Mongoose",
+
+        "Schema",
+
+        "Model",
+
+        "References",
+
+        "populate()",
+
+        "Validation",
+
+        "Indexing — basic",
+
+        "Database: User",
+
+        "Database: Project",
+
+        "Database: Task",
+
+        "Database: Notification",
+
+        "Relationship: User → Projects → Tasks"
+
+    ]
+},
+
+
+{
+    number: 9,
+
+    title: "Authentication 🔐",
+
+    goal: "Secure real applications",
+
+    topics: [
+
+        "Register",
+
+        "Login",
+
+        "Password hashing",
+
+        "bcrypt",
+
+        "JWT",
+
+        "Access token",
+
+        "Cookies",
+
+        "HTTP-only cookies",
+
+        "Authentication middleware",
+
+        "Logout",
+
+        "Protected APIs",
+
+        "Token expiration",
+
+        "Flow: Register → Login → JWT → Middleware → Protected API"
+
+    ]
+},
+
+
+{
+    number: 10,
+
+    title: "Authorization / RBAC ⭐⭐⭐",
+
+    goal: "Control what each role can do",
+
+    topics: [
+
+        "ADMIN role",
+
+        "MANAGER role",
+
+        "MEMBER role",
+
+        "ADMIN: Manage users",
+
+        "ADMIN: Delete projects",
+
+        "ADMIN: View everything",
+
+        "MANAGER: Create projects",
+
+        "MANAGER: Create tasks",
+
+        "MANAGER: Assign tasks",
+
+        "MEMBER: View assigned tasks",
+
+        "MEMBER: Update task status",
+
+        "Backend RBAC enforcement"
+
+    ]
+},
+
+
+{
+    number: 11,
+
+    title: "Connect Full MERN",
+
+    goal: "Connect frontend, backend and database",
+
+    topics: [
+
+        "React → Redux → API → Express → Node → MongoDB",
+
+        "Login",
+
+        "Register",
+
+        "Dashboard",
+
+        "Projects",
+
+        "Tasks",
+
+        "User management",
+
+        "Roles",
+
+        "Search",
+
+        "Filtering",
+
+        "Pagination",
+
+        "Error handling",
+
+        "Complete TeamTask full-stack project"
+
+    ]
+},
+
+
+{
+    number: 12,
+
+    title: "Advanced Backend",
+
+    goal: "Important production backend concepts",
+
+    topics: [
+
+        "Advanced middleware",
+
+        "API validation",
+
+        "Central error handling",
+
+        "Pagination",
+
+        "Filtering",
+
+        "Sorting",
+
+        "Search",
+
+        "File uploads",
+
+        "Rate limiting",
+
+        "API security",
+
+        "CORS",
+
+        "Helmet",
+
+        "Environment variables"
+
+    ]
+},
+
+
+{
+    number: 13,
+
+    title: "SQL / PostgreSQL ⭐",
+
+    goal: "Learn practical SQL",
+
+    topics: [
+
+        "SQL basics",
+
+        "Tables",
+
+        "Primary key",
+
+        "Foreign key",
+
+        "CRUD",
+
+        "Joins",
+
+        "GROUP BY",
+
+        "Indexes",
+
+        "Transactions",
+
+        "PostgreSQL basics"
+
+    ]
+},
+
+
+{
+    number: 14,
+
+    title: "Real-Time Applications",
+
+    goal: "Build real-time features",
+
+    topics: [
+
+        "WebSockets",
+
+        "Socket.IO",
+
+        "Real-time events",
+
+        "New task assigned → real-time notification",
+
+        "Task updated → other users see update"
+
+    ]
+},
+
+
+{
+    number: 15,
+
+    title: "Redis",
+
+    goal: "Learn practical Redis",
+
+    topics: [
+
+        "What Redis is",
+
+        "Caching",
+
+        "Sessions",
+
+        "Expiration / TTL",
+
+        "Basic queues",
+
+        "API caching",
+
+        "Notifications",
+
+        "Rate limiting"
+
+    ]
+},
+
+
+{
+    number: 16,
+
+    title: "Testing",
+
+    goal: "Test real applications",
+
+    topics: [
+
+        "React Testing basics",
+
+        "API testing",
+
+        "Jest / Vitest",
+
+        "Supertest",
+
+        "Test Register",
+
+        "Test Login",
+
+        "Test Create task",
+
+        "Test Update task",
+
+        "Test Delete task",
+
+        "Test Authorization"
+
+    ]
+},
+
+
+{
+    number: 17,
+
+    title: "Security 🔐",
+
+    goal: "Real-world application security",
+
+    topics: [
+
+        "Password hashing",
+
+        "JWT security",
+
+        "HTTP-only cookies",
+
+        "CORS",
+
+        "XSS",
+
+        "CSRF — basic",
+
+        "NoSQL injection",
+
+        "Rate limiting",
+
+        "Input validation",
+
+        "Environment variables",
+
+        "Secure headers"
+
+    ]
+},
+
+
+{
+    number: 18,
+
+    title: "Git + GitHub",
+
+    goal: "Become comfortable with Git",
+
+    topics: [
+
+        "git init",
+
+        "git add",
+
+        "git commit",
+
+        "git status",
+
+        "git log",
+
+        "git branch",
+
+        "git checkout",
+
+        "git switch",
+
+        "git merge",
+
+        "git pull",
+
+        "git push",
+
+        "Branches",
+
+        "Pull requests",
+
+        ".gitignore",
+
+        "README",
+
+        "Good commit messages"
+
+    ]
+},
+
+
+{
+    number: 19,
+
+    title: "Deployment 🚀",
+
+    goal: "Deploy real applications",
+
+    topics: [
+
+        "React → hosting platform",
+
+        "Node / Express → cloud server",
+
+        "MongoDB Atlas / PostgreSQL cloud",
+
+        "Environment variables",
+
+        "Production build",
+
+        "CORS",
+
+        "Domain",
+
+        "API URL",
+
+        "Logs",
+
+        "Basic monitoring"
+
+    ]
+},
+
+
+{
+    number: 20,
+
+    title: "Docker",
+
+    goal: "Learn practical Docker",
+
+    topics: [
+
+        "What Docker is",
+
+        "Dockerfile",
+
+        "Image",
+
+        "Container",
+
+        "Docker Compose",
+
+        "Environment variables",
+
+        "Containerizing frontend",
+
+        "Containerizing backend"
+
+    ]
+},
+
+
+{
+    number: 21,
+
+    title: "System Design Basics",
+
+    goal: "Prepare for placements and interviews",
+
+    topics: [
+
+        "Client → Load Balancer → Backend → Database",
+
+        "Scalability",
+
+        "Caching",
+
+        "Database indexing",
+
+        "Horizontal vs vertical scaling",
+
+        "REST",
+
+        "WebSockets",
+
+        "Queues",
+
+        "CDN",
+
+        "Load balancing",
+
+        "CAP basics",
+
+        "Database choices"
+
+    ]
+}
+
+];
+
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+const STORAGE_KEY = "mernPlannerProgress";
+
+
+let completed =
+    JSON.parse(
+        localStorage.getItem(STORAGE_KEY)
+    ) || [];
+
+
+
+/*
+   Topics explicitly marked completed
+   in your original roadmap.
+*/
+
+const defaultCompleted = [
+
+    "1-map()",
+
+    "1-filter()",
+
+    "1-reduce()",
+
+    "1-Destructuring",
+
+    "1-Spread operator"
+
+];
+
+
+
+if (completed.length === 0) {
+
+    completed = [...defaultCompleted];
+
+    save();
+
+}
+
+
+
+/* =========================================================
+   PHASE OPEN/CLOSE
+========================================================= */
+
+let openPhases = new Set([
+    0,
+    1,
+    2
+]);
+
+
+
+/* =========================================================
+   HELPER
+========================================================= */
+
+function topicId(phase, topic) {
+
+    return phase + "-" + topic;
+
+}
+
+
+function isCompleted(phase, topic) {
+
+    return completed.includes(
+        topicId(phase, topic)
+    );
+
+}
+
+
+function save() {
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(completed)
+    );
+
+}
+
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render() {
+
+    const planner =
+        document.getElementById("planner");
+
+    planner.innerHTML = "";
+
+
+
+    const search =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const filter =
+        document
+            .getElementById("filter")
+            .value;
+
+
+
+    phases.forEach(phase => {
+
+
+        let visibleTopics =
+            phase.topics.filter(topic => {
+
+
+                const done =
+                    isCompleted(
+                        phase.number,
+                        topic
+                    );
+
+
+                /* FILTER */
+
+                if (
+                    filter === "completed"
+                    &&
+                    !done
+                ) {
+                    return false;
+                }
+
+
+                if (
+                    filter === "remaining"
+                    &&
+                    done
+                ) {
+                    return false;
+                }
+
+
+                /* SEARCH */
+
+                if (
+                    search
+                    &&
+                    !topic
+                        .toLowerCase()
+                        .includes(search)
+                    &&
+                    !phase.title
+                        .toLowerCase()
+                        .includes(search)
+                ) {
+                    return false;
+                }
+
+
+                return true;
+
+            });
+
+
+
+        /*
+            If search/filter hides
+            everything in phase,
+            don't show phase.
+        */
+
+        if (
+            visibleTopics.length === 0
+            &&
+            (
+                search
+                ||
+                filter !== "all"
+            )
+        ) {
+            return;
+        }
+
+
+
+        /* =========================
+           PHASE STATISTICS
+        ========================= */
+
+        const total =
+            phase.topics.length;
+
+
+        const done =
+            phase.topics.filter(
+                topic =>
+                    isCompleted(
+                        phase.number,
+                        topic
+                    )
+            ).length;
+
+
+        const percent =
+            total === 0
+                ? 0
+                : Math.round(
+                    (done / total) * 100
+                );
+
+
+
+        /* =========================
+           PHASE
+        ========================= */
+
+        const phaseElement =
+            document.createElement("div");
+
+
+        phaseElement.className =
+            "phase " +
+            (
+                openPhases.has(
+                    phase.number
+                )
+                    ? "open"
+                    : ""
+            );
+
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        const header =
+            document.createElement("div");
+
+
+        header.className =
+            "phase-header";
+
+
+        header.onclick = () => {
+
+            if (
+                openPhases.has(
+                    phase.number
+                )
+            ) {
+
+                openPhases.delete(
+                    phase.number
+                );
+
+            } else {
+
+                openPhases.add(
+                    phase.number
+                );
+
+            }
+
+
+            render();
+
+        };
+
+
+
+        header.innerHTML = `
+
+            <div class="phase-number">
+                ${phase.number}
+            </div>
+
+
+            <div class="phase-info">
+
+                <div class="phase-title">
+                    PHASE ${phase.number}
+                    —
+                    ${phase.title}
+                </div>
+
+                <div class="phase-goal">
+                    ${phase.goal}
+                </div>
+
+            </div>
+
+
+            <div class="phase-progress">
+
+                <div class="phase-progress-text">
+
+                    <span>
+                        ${done}/${total}
+                    </span>
+
+                    <strong>
+                        ${percent}%
+                    </strong>
+
+                </div>
+
+
+                <div class="mini-background">
+
+                    <div
+                        class="mini-progress"
+                        style="
+                            width:${percent}%
+                        "
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="arrow">
+                ▼
+            </div>
+
+        `;
+
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        const body =
+            document.createElement("div");
+
+
+        body.className =
+            "phase-body";
+
+
+
+        const list =
+            document.createElement("div");
+
+
+        list.className =
+            "topic-list";
+
+
+
+        visibleTopics.forEach(topic => {
+
+
+            const done =
+                isCompleted(
+                    phase.number,
+                    topic
+                );
+
+
+            const label =
+                document.createElement("label");
+
+
+            label.className =
+                "topic " +
+                (
+                    done
+                        ? "completed"
+                        : ""
+                );
+
+
+
+            label.innerHTML = `
+
+                <input
+                    type="checkbox"
+                    class="topic-checkbox"
+                    ${done ? "checked" : ""}
+                >
+
+                <span class="topic-name">
+                    ${topic}
+                </span>
+
+                ${
+                    done
+                        ? `
+                            <span class="done-badge">
+                                DONE
+                            </span>
+                          `
+                        : ""
+                }
+
+            `;
+
+
+
+            const checkbox =
+                label.querySelector(
+                    "input"
+                );
+
+
+
+            checkbox.onclick =
+                event => {
+
+                    event.stopPropagation();
+
+                };
+
+
+
+            checkbox.onchange =
+                () => {
+
+
+                    const id =
+                        topicId(
+                            phase.number,
+                            topic
+                        );
+
+
+                    if (
+                        checkbox.checked
+                    ) {
+
+                        if (
+                            !completed.includes(
+                                id
+                            )
+                        ) {
+
+                            completed.push(id);
+
+                        }
+
+                    } else {
+
+                        completed =
+                            completed.filter(
+                                item =>
+                                    item !== id
+                            );
+
+                    }
+
+
+                    save();
+
+                    render();
+
+                };
+
+
+
+            list.appendChild(label);
+
+        });
+
+
+
+        body.appendChild(list);
+
+        phaseElement.appendChild(header);
+
+        phaseElement.appendChild(body);
+
+        planner.appendChild(
+            phaseElement
+        );
+
+    });
+
+
+
+    updateOverallProgress();
+
+}
+
+
+
+/* =========================================================
+   OVERALL PROGRESS
+========================================================= */
+
+function updateOverallProgress() {
+
+
+    let total = 0;
+
+    let done = 0;
+
+
+
+    phases.forEach(phase => {
+
+        total +=
+            phase.topics.length;
+
+
+        phase.topics.forEach(
+            topic => {
+
+                if (
+                    isCompleted(
+                        phase.number,
+                        topic
+                    )
+                ) {
+
+                    done++;
+
+                }
+
+            }
+        );
+
+    });
+
+
+
+    const remaining =
+        total - done;
+
+
+    const percent =
+        total === 0
+            ? 0
+            : Math.round(
+                (done / total) * 100
+            );
+
+
+
+    document.getElementById(
+        "overallPercent"
+    ).innerText =
+        percent + "%";
+
+
+
+    document.getElementById(
+        "overallProgress"
+    ).style.width =
+        percent + "%";
+
+
+
+    document.getElementById(
+        "completedCount"
+    ).innerText =
+        done;
+
+
+
+    document.getElementById(
+        "remainingCount"
+    ).innerText =
+        remaining;
+
+
+
+    document.getElementById(
+        "totalCount"
+    ).innerText =
+        total;
+
+}
+
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document
+    .getElementById("search")
+    .addEventListener(
+        "input",
+        render
+    );
+
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+document
+    .getElementById("filter")
+    .addEventListener(
+        "change",
+        render
+    );
+
+
+
+/* =========================================================
+   EXPAND / COLLAPSE ALL
+========================================================= */
+
+function toggleAll() {
+
+
+    const button =
+        document.getElementById(
+            "toggleAllBtn"
+        );
+
+
+    if (
+        openPhases.size ===
+        phases.length
+    ) {
+
+
+        openPhases.clear();
+
+
+        button.innerText =
+            "Expand All";
+
+
+    } else {
+
+
+        phases.forEach(
+            phase =>
+                openPhases.add(
+                    phase.number
+                )
+        );
+
+
+        button.innerText =
+            "Collapse All";
+
+    }
+
+
+    render();
+
+}
+
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetProgress() {
+
+
+    const confirmReset =
+        confirm(
+            "Are you sure you want to reset your progress?"
+        );
+
+
+    if (!confirmReset) {
+        return;
+    }
+
+
+    completed =
+        [...defaultCompleted];
+
+
+    save();
+
+
+    render();
+
+}
+
+
+
+/* =========================================================
+   INITIAL RENDER
+========================================================= */
+
+render();
+
+
+</script>
+
+
+</body>
+</html>
